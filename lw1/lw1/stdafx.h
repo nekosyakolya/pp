@@ -2,8 +2,9 @@
 
 #include "targetver.h"
 
+#include <Windows.h>
+#include <iostream>
 #include <stdio.h>
 #include <tchar.h>
-#include <iostream>
-#include "Point.h"
-#include "CalculateNumberPi.h"
+
+#include <vector>
