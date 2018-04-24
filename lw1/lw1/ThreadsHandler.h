@@ -9,7 +9,5 @@ public:
 
 private:
 	void Close();
-
 	std::vector<HANDLE> m_threads;
-	std::vector<LPVOID> m_threadsData;
 };

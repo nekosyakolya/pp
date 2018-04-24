@@ -1,26 +1,38 @@
 #include "stdafx.h"
 
+#include "CMultiThreadCalculateNumberPi.h"
+#include "CalculateFactory.h"
 #include "CalculateNumberPi.h"
-#include "MultiThreadedCalculateNumberPi.h"
 #include "Point.h"
 
 int main(int argc, char* argv[])
 {
 	try
 	{
+		unsigned startTime = clock();
+		std::stringstream s;
+		for (size_t i = 1; i != argc; ++i)
+		{
+			s << argv[i] << " ";
+		}
+		CCalculatorFactory factory;
+		std::unique_ptr<CCalculateNumberPi> calculate = factory.CreateCalculate(s);
 
-		CCalculateNumberPi calculate;
+		size_t numberIterations;
+		if (!(s >> numberIterations))
+		{
+			throw std::invalid_argument("Incorrect number of arguments\n");
+		}
 
-		calculate.Calculate(123);
-		std::cout << calculate.GetPi() << std::endl;
+		calculate->Calculate(numberIterations);
+		unsigned endTime = clock();
 
-		CMultiThreadedCalculateNumberPi calc(4);
-		calc.Calculate(123);
-		std::cout << calc.GetPi() << std::endl;
+		std::cout << "Pi: " << calculate->GetPi() << std::endl;
+		std::cout << "Time: " << endTime - startTime << std::endl;
 	}
-	catch (std::logic_error const& e)
+	catch (std::exception const& e)
 	{
-		std::cout << e.what();
+		std::cerr << e.what();
 	}
 
 	return 0;

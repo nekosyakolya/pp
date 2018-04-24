@@ -1,12 +1,11 @@
 #pragma once
 #include "CalculateNumberPi.h"
 #include "ThreadsHandler.h"
-#include <memory>
 
-class CMultiThreadedCalculateNumberPi : public CCalculateNumberPi
+class CMultiThreadCalculateNumberPi : public CCalculateNumberPi
 {
 public:
-	CMultiThreadedCalculateNumberPi(size_t);
+	CMultiThreadCalculateNumberPi(size_t);
 
 	void Calculate(size_t) override;
 

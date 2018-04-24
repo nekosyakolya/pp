@@ -30,10 +30,13 @@
     <ClInclude Include="Point.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MultiThreadedCalculateNumberPi.h">
+    <ClInclude Include="ThreadsHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ThreadsHandler.h">
+    <ClInclude Include="CalculateFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CMultiThreadCalculateNumberPi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,10 +50,13 @@
     <ClCompile Include="CalculateNumberPi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MultiThreadedCalculateNumberPi.cpp">
+    <ClCompile Include="ThreadsHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ThreadsHandler.cpp">
+    <ClCompile Include="CalculateFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CMultiThreadCalculateNumberPi.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

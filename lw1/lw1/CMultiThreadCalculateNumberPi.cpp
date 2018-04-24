@@ -1,14 +1,14 @@
 #include "stdafx.h"
-#include "MultiThreadedCalculateNumberPi.h"
+#include "CMultiThreadCalculateNumberPi.h"
 
-CMultiThreadedCalculateNumberPi::CMultiThreadedCalculateNumberPi(size_t numberOfThreads)
+CMultiThreadCalculateNumberPi::CMultiThreadCalculateNumberPi(size_t numberOfThreads)
 	: CCalculateNumberPi()
 	, m_threadsHandler(std::make_unique<CThreadsHandler>())
 	, m_numberOfThreads(numberOfThreads)
 {
 }
 
-void CMultiThreadedCalculateNumberPi::Calculate(size_t amountPoints)
+void CMultiThreadCalculateNumberPi::Calculate(size_t amountPoints)
 {
 
 	size_t numberOfIterationsAtThread = amountPoints / m_numberOfThreads;
@@ -24,7 +24,6 @@ void CMultiThreadedCalculateNumberPi::Calculate(size_t amountPoints)
 	{
 		if (threadsData.at(i).numberOfIterations != 0)
 		{
-
 			m_threadsHandler->AddThread(CreateThread(NULL, NULL, &HandleDots, &threadsData.at(i), NULL, NULL));
 		}
 	}
