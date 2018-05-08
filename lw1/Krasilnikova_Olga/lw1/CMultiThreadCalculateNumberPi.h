@@ -10,8 +10,10 @@ public:
 	void Calculate(size_t) override;
 
 private:
-	std::unique_ptr<CThreadsHandler> m_threadsHandler;
+	std::unique_ptr<CThreadsHandler> m_threadsHandlers;
 
-	size_t m_numberOfThreads = 0;
-	size_t m_numberOfInnerPoint = 0;
+	std::vector<ThreadData> CreateThreadsData(size_t);
+
+	size_t m_numberThreads = 0;
+	size_t m_numberInnerPoint = 0;
 };

@@ -5,12 +5,12 @@
 struct ThreadData
 {
 	ThreadData(size_t iterations, size_t* innerPoints)
-		: numberOfIterations(iterations)
-		, numberOfInnerPoints(innerPoints)
+		: numberIterations(iterations)
+		, numberInnerPoints(innerPoints)
 	{
 	}
-	size_t numberOfIterations;
-	size_t* numberOfInnerPoints;
+	size_t numberIterations;
+	size_t* numberInnerPoints;
 };
 
 class CCalculateNumberPi
@@ -24,6 +24,7 @@ public:
 private:
 	static const int m_sideSquare = 1;
 	double m_pi;
+	const double COEFFICIENT = 4;
 	static bool BelongsCircle(const Point&);
 
 protected:

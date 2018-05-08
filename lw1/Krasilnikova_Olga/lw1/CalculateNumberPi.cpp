@@ -4,12 +4,12 @@
 DWORD CCalculateNumberPi::HandleDots(LPVOID data)
 {
 	ThreadData* threadData = static_cast<ThreadData*>(data);
-	for (size_t i = 0; i != threadData->numberOfIterations; ++i)
+	for (size_t i = 0; i != threadData->numberIterations; ++i)
 	{
 		Point point;
 		if (BelongsCircle(point))
 		{
-			InterlockedIncrement(threadData->numberOfInnerPoints);
+			InterlockedIncrement(threadData->numberInnerPoints);
 		}
 	}
 	return 0;
@@ -17,7 +17,7 @@ DWORD CCalculateNumberPi::HandleDots(LPVOID data)
 
 void CCalculateNumberPi::SetNumberPi(size_t amountPointsInCircle, size_t amountPoints)
 {
-	m_pi = 4 * (double)amountPointsInCircle / amountPoints;
+	m_pi = (double)amountPointsInCircle / amountPoints * COEFFICIENT;
 }
 
 CCalculateNumberPi::CCalculateNumberPi()

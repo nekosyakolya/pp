@@ -12,7 +12,8 @@ void CThreadsHandler::AddThread(HANDLE const& thread)
 
 void CThreadsHandler::Execute()
 {
-	WaitForMultipleObjects(m_threads.size(), m_threads.data(), TRUE, INFINITE);
+	DWORD size = static_cast<DWORD>(m_threads.size());
+	WaitForMultipleObjects(size, m_threads.data(), TRUE, INFINITE);
 }
 
 CThreadsHandler::~CThreadsHandler()

@@ -6,9 +6,7 @@
 class CCalculatorFactory
 {
 public:
-	CCalculatorFactory();
 	std::unique_ptr<CCalculateNumberPi> CreateCalculate(std::stringstream& description);
-	~CCalculatorFactory();
 
 private:
 	using CalculatorCreator = std::function<std::unique_ptr<CCalculateNumberPi>(std::stringstream& stream)>;
