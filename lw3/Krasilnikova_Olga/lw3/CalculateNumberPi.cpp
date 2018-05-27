@@ -9,6 +9,7 @@ void CCalculateNumberPi::HandleDots(int amountPoints)
 		Point point;
 		if (BelongsCircle(point))
 		{
+#pragma omp atomic
 			++m_amountPointsInCircle;
 		}
 	}
