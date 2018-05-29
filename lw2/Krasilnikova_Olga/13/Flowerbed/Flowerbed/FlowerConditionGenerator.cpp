@@ -12,14 +12,14 @@ DWORD WINAPI CFlowerConditionGenerator::Execute(LPVOID data)
 	{
 			WaitForSingleObject(threadData->mutex, INFINITE);
 			auto i = rand() % threadData->flowers->size();
-			//auto currentFlower = (threadData->m_flowers)->at(i);
+			auto &currentFlower = (threadData->flowers)->at(i);
 
-			if (!(threadData->flowers)->at(i).IsFlaccidFlower())
+			if (!currentFlower.IsFlaccidFlower())
 			{
 				if (IsAnEvenRandomNumber())
 				{
-					(threadData->flowers)->at(i).SetState(FlowerState::FLACCID);
-					std::printf("цветочек #%d %s\n", (threadData->flowers)->at(i).GetId(), (threadData->flowers)->at(i).GetState().c_str());
+					currentFlower.SetState(FlowerState::FLACCID);
+					std::printf("цветочек #%d %s\n", currentFlower.GetId(), currentFlower.GetState().c_str());
 				}
 			}
 			ReleaseMutex(threadData->mutex);

@@ -55,7 +55,7 @@ int main()
 	HANDLE mutex = CreateMutex(NULL, false, NULL);
 
 	HANDLE * threads = new HANDLE[NUMBER_THREADS];
-	ThreadData threadData(&flowers, &mutex);
+	ThreadData threadData(&flowers, mutex);
 	threads[0] = CreateThread(NULL, NULL, &CFlowerConditionGenerator::Execute, &threadData, NULL, NULL);
 
 	for (size_t i = 1; i < NUMBER_THREADS; ++i)

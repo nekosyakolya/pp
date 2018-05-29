@@ -27,6 +27,7 @@ std::string CFlower::GetState() const
 void CFlower::SetState(const FlowerState & state)
 {
 	m_state = state;
+
 }
 
 
