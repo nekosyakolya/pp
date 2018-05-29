@@ -1,8 +1,6 @@
-#include "stdafx.h"
+п»ї#include "stdafx.h"
 #include "FlowerConditionGenerator.h"
 #include "ThreadData.h"
-
-HANDLE CFlowerConditionGenerator::m_mutex = CreateMutex(NULL, false, NULL);
 CFlowerConditionGenerator::CFlowerConditionGenerator()
 {
 }
@@ -12,29 +10,21 @@ DWORD WINAPI CFlowerConditionGenerator::Execute(LPVOID data)
 	ThreadData* threadData = static_cast<ThreadData*>(data);
 	while (true)
 	{
-		/*for (size_t i = 0; i < threadData->m_flowers->size(); ++i)
-		{*/
-			// если цветок увял,то рандомим состояние
-			WaitForSingleObject(m_mutex, INFINITE);
-			auto i = rand() % threadData->m_flowers->size();
+			WaitForSingleObject(threadData->mutex, INFINITE);
+			auto i = rand() % threadData->flowers->size();
+			//auto currentFlower = (threadData->m_flowers)->at(i);
 
-			if (!(threadData->m_flowers)->at(i).IsFlaccidFlower())
+			if (!(threadData->flowers)->at(i).IsFlaccidFlower())
 			{
-				auto coefficient = rand();
-				if (coefficient % 5 == 0)
+				if (IsAnEvenRandomNumber())
 				{
-
-					(threadData->m_flowers)->at(i).SetState(FlowerState::FLACCID);
-					std::printf("цветочек #%d %s\n", (threadData->m_flowers)->at(i).GetId(), (threadData->m_flowers)->at(i).GetState().c_str());
-
-
+					(threadData->flowers)->at(i).SetState(FlowerState::FLACCID);
+					std::printf("С†РІРµС‚РѕС‡РµРє #%d %s\n", (threadData->flowers)->at(i).GetId(), (threadData->flowers)->at(i).GetState().c_str());
 				}
 			}
-			ReleaseMutex(m_mutex);
-			Sleep(500);
-		//}
+			ReleaseMutex(threadData->mutex);
+			//Sleep(500);
 	}
-
 
 	return 0;
 }
@@ -42,7 +32,10 @@ DWORD WINAPI CFlowerConditionGenerator::Execute(LPVOID data)
 
 CFlowerConditionGenerator::~CFlowerConditionGenerator()
 {
-	//ReleaseMutex(m_mutex);
+}
 
-	CloseHandle(m_mutex);
+bool CFlowerConditionGenerator::IsAnEvenRandomNumber()
+{
+	auto number = rand();
+	return number % 2 == 0;
 }

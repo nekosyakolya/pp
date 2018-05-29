@@ -1,11 +1,14 @@
 #pragma once
 #include "Flower.h"
+#include "Windows.h"
 
 struct ThreadData
 {
-	ThreadData(std::vector<CFlower>* flowers)
-		: m_flowers(flowers)
+	ThreadData(std::vector<CFlower>* flowers, HANDLE mutex)
+		: flowers(flowers),
+		mutex(mutex)
 	{
 	}
-	std::vector<CFlower>* m_flowers;
+	std::vector<CFlower>* flowers;
+	HANDLE mutex;
 };

@@ -1,29 +1,9 @@
-#pragma once
+ο»Ώ#pragma once
 enum class FlowerState
 {
 	FLOWERING,
 	FLACCID
 };
-
-
-inline std::ostream& operator<<(std::ostream& str, const FlowerState& value)
-{
-	std::string state = "";
-	switch (value)
-	{
-	case FlowerState::FLACCID:
-		state = "σβÿλ";
-		break;
-	default:
-		state = "πΰρφβελ";
-
-		break;
-	}
-	str << state;
-
-	return str;
-}
-
 
 inline std::string ToString(const FlowerState& value)
 {
@@ -31,10 +11,10 @@ inline std::string ToString(const FlowerState& value)
 	switch (value)
 	{
 	case FlowerState::FLACCID:
-		state = "σβÿλ";
+		state = "ΡƒΠ²ΡΠ»";
 		break;
 	default:
-		state = "πΰρφβελ";
+		state = "Ρ€Π°ΡΡ†Π²ΠµΠ»";
 
 		break;
 	}

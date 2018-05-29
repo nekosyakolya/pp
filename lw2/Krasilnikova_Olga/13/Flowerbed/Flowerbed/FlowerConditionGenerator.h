@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 class CFlowerConditionGenerator
 {
 public:
@@ -6,6 +6,6 @@ public:
 	static DWORD WINAPI Execute(LPVOID data);
 	~CFlowerConditionGenerator();
 private:
-	static HANDLE m_mutex;
+	static bool IsAnEvenRandomNumber();
 };
 

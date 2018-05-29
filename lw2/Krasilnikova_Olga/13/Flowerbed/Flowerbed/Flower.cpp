@@ -26,8 +26,6 @@ std::string CFlower::GetState() const
 
 void CFlower::SetState(const FlowerState & state)
 {
-	//std::printf("цветочек #%d %s\n", m_id, ToString(state).c_str());
-
 	m_state = state;
 }
 
