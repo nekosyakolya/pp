@@ -44,7 +44,7 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	srand(time(NULL));
+	//srand(time(NULL));
 
 	std::vector<CFlower> flowers;
 	for (size_t i = 0; i < NUMBER_FLOWERS; ++i)

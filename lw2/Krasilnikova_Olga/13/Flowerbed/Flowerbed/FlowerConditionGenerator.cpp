@@ -1,6 +1,8 @@
 ﻿#include "stdafx.h"
 #include "FlowerConditionGenerator.h"
 #include "ThreadData.h"
+
+std::mt19937 &CFlowerConditionGenerator::mt = CRandomGenerator::getMt19937();
 CFlowerConditionGenerator::CFlowerConditionGenerator()
 {
 }
@@ -11,7 +13,11 @@ DWORD WINAPI CFlowerConditionGenerator::Execute(LPVOID data)
 	while (true)
 	{
 			WaitForSingleObject(threadData->mutex, INFINITE);
-			auto i = rand() % threadData->flowers->size();
+			int max = threadData->flowers->size() - 1;//todo
+			std::uniform_int_distribution<int> range(0, max);
+
+			auto i = range(mt);
+			
 			auto &currentFlower = (threadData->flowers)->at(i);
 
 			if (!currentFlower.IsFlaccidFlower())
@@ -23,7 +29,6 @@ DWORD WINAPI CFlowerConditionGenerator::Execute(LPVOID data)
 				}
 			}
 			ReleaseMutex(threadData->mutex);
-			//Sleep(500);
 	}
 
 	return 0;
@@ -36,6 +41,8 @@ CFlowerConditionGenerator::~CFlowerConditionGenerator()
 
 bool CFlowerConditionGenerator::IsAnEvenRandomNumber()
 {
-	auto number = rand();
-	return number % 2 == 0;
+	std::uniform_int_distribution<int> range(0, 443);
+
+	auto i = range(mt);
+	return i % 2 == 0;
 }

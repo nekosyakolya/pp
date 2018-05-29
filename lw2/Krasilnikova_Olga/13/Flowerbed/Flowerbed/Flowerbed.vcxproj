@@ -151,6 +151,7 @@
     <ClInclude Include="FlowerConditionGenerator.h" />
     <ClInclude Include="FlowerState.h" />
     <ClInclude Include="Gardener.h" />
+    <ClInclude Include="RandomGenerator.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="ThreadData.h" />
@@ -160,6 +161,7 @@
     <ClCompile Include="Flowerbed.cpp" />
     <ClCompile Include="FlowerConditionGenerator.cpp" />
     <ClCompile Include="Gardener.cpp" />
+    <ClCompile Include="RandomGenerator.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
