@@ -6,19 +6,19 @@ CRandomGenerator::CRandomGenerator() {
 
 	if (rd.entropy() != 0) {
 		std::seed_seq seed{ rd(), rd(), rd(), rd(), rd(), rd(), rd(), rd() };
-		mMt.seed(seed);
+		m_generator.seed(seed);
 	}
 	else {
 		auto seed = std::chrono::high_resolution_clock::now().time_since_epoch().count();
-		mMt.seed(seed);
+		m_generator.seed(seed);
 	}
 }
 
 CRandomGenerator& CRandomGenerator::instance() {
-	static CRandomGenerator s;
-	return s;
+	static CRandomGenerator generator;
+	return generator;
 }
 
-std::mt19937 & CRandomGenerator::getMt19937() {
-	return CRandomGenerator::instance().mMt;
+std::mt19937 & CRandomGenerator::get() {
+	return CRandomGenerator::instance().m_generator;
 }

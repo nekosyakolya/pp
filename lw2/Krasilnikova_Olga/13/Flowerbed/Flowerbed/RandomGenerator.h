@@ -5,7 +5,7 @@
 class CRandomGenerator
 {
 public:
-	static std::mt19937 & getMt19937();
+	static std::mt19937 & get();
 
 private:
 	CRandomGenerator();
@@ -15,6 +15,6 @@ private:
 	CRandomGenerator(CRandomGenerator const&) = delete;
 	CRandomGenerator& operator= (CRandomGenerator const&) = delete;
 
-	std::mt19937 mMt;
+	std::mt19937 m_generator;
 };
 

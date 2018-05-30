@@ -4,36 +4,37 @@
 #include "Flower.h"
 #include "ThreadData.h"
 #include "FlowerConditionGenerator.h"
+#include "ThreadsHandler.h"
+
 
 
 namespace
 {
-	const static size_t TIME_SLEEP = 500;
-	const static size_t NUMBER_FLOWERS = 4;
+	const static size_t TIME_SLEEP = 50;
+	const static size_t NUMBER_FLOWERS = 5;
 	const static size_t NUMBER_THREADS = 3;
 
 }
 
-DWORD WINAPI threadProc(LPVOID data)
+DWORD WINAPI Process(LPVOID data)
 {
 	ThreadData* threadData = static_cast<ThreadData*>(data);
-
 	CGardener gardener;
 
 	while (true)
 	{
-		for (size_t i = 0; i < threadData->flowers->size(); ++i)
+		auto size = threadData->flowerbed->size();
+		for (size_t i = 0; i < size; ++i)
 		{
 			WaitForSingleObject(threadData->mutex, INFINITE);
 
-			gardener.WaterFlower((threadData->flowers)->at(i));
+			gardener.WaterFlower((threadData->flowerbed)->at(i));
+
 			ReleaseMutex(threadData->mutex);
-
-
 		}
+
 		Sleep(TIME_SLEEP);
 	}
-
 	return 0;
 }
 
@@ -44,31 +45,24 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	//srand(time(NULL));
-
-	std::vector<CFlower> flowers;
+	std::vector<CFlower> flowerbed;
 	for (size_t i = 0; i < NUMBER_FLOWERS; ++i)
 	{
-		flowers.emplace_back(CFlower());
+		flowerbed.emplace_back(CFlower());
 	}
 	
 	HANDLE mutex = CreateMutex(NULL, false, NULL);
+	CThreadsHandler threadsHandler;
 
-	HANDLE * threads = new HANDLE[NUMBER_THREADS];
-	ThreadData threadData(&flowers, mutex);
-	threads[0] = CreateThread(NULL, NULL, &CFlowerConditionGenerator::Execute, &threadData, NULL, NULL);
+	ThreadData threadData(&flowerbed, mutex);
+	threadsHandler.AddThread(CreateThread(NULL, NULL, &CFlowerConditionGenerator::Execute, &threadData, NULL, NULL));
 
 	for (size_t i = 1; i < NUMBER_THREADS; ++i)
 	{
-		threads[i] = CreateThread(NULL, NULL, threadProc, &threadData, NULL, NULL);
+		threadsHandler.AddThread(CreateThread(NULL, NULL, Process, &threadData, NULL, NULL));
 	}
 
-	WaitForMultipleObjects(NUMBER_THREADS, threads, true, INFINITE);
-	for (size_t i = 0; i < NUMBER_THREADS; ++i)
-	{
-		CloseHandle(threads);
-	}
-
+	threadsHandler.Execute();
 	CloseHandle(mutex);
 
 	return 0;

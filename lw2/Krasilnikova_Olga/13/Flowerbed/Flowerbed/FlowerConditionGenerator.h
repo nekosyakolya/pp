@@ -9,6 +9,7 @@ public:
 	~CFlowerConditionGenerator();
 private:
 	static bool IsAnEvenRandomNumber();
-	static std::mt19937 &mt;
+	static std::mt19937 &m_generator;
+	static int GetRandomIndex(size_t size);
 };
 

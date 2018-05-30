@@ -4,11 +4,16 @@
 
 struct ThreadData
 {
-	ThreadData(std::vector<CFlower>* flowers, HANDLE mutex)
-		: flowers(flowers),
+	ThreadData(std::vector<CFlower>* flowerbed, HANDLE mutex)
+		: flowerbed(flowerbed),
 		mutex(mutex)
 	{
 	}
-	std::vector<CFlower>* flowers;
+	~ThreadData()
+	{
+		delete flowerbed;
+		delete mutex;
+	}
+	std::vector<CFlower>* flowerbed;
 	HANDLE mutex;
 };
