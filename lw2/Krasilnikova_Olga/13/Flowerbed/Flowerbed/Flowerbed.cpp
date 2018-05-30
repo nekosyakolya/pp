@@ -10,7 +10,7 @@ namespace
 {
 const static size_t TIME_SLEEP = 50;
 const static size_t NUMBER_FLOWERS = 5;
-const static size_t NUMBER_THREADS = 3;
+const static size_t NUMBER_GARDENERS = 2;
 } // namespace
 
 DWORD WINAPI Process(LPVOID data)
@@ -52,7 +52,7 @@ int main()
 	ThreadData threadData(&flowerbed, mutex);
 	threadsHandler.AddThread(CreateThread(NULL, NULL, &CFlowerConditionGenerator::Execute, &threadData, NULL, NULL));
 
-	for (size_t i = 1; i < NUMBER_THREADS; ++i)
+	for (size_t i = 0; i < NUMBER_GARDENERS; ++i)
 	{
 		threadsHandler.AddThread(CreateThread(NULL, NULL, Process, &threadData, NULL, NULL));
 	}
