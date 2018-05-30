@@ -19,7 +19,7 @@ DWORD WINAPI CFlowerConditionGenerator::Execute(LPVOID data)
 			if (IsAnEvenRandomNumber())
 			{
 				currentFlower.SetState(FlowerState::FLACCID);
-				std::printf("цветочек #%d %s\n", currentFlower.GetId(), currentFlower.GetState().c_str());
+				std::printf("цветочек #%d %s\n", static_cast<int>(currentFlower.GetId()), currentFlower.GetState().c_str());
 			}
 		}
 
@@ -36,7 +36,7 @@ bool CFlowerConditionGenerator::IsAnEvenRandomNumber()
 
 int CFlowerConditionGenerator::GetRandomIndex(size_t size)
 {
-	int max = (size == 0) ? 0 : (size - 1);
+	int max = (size == 0) ? 0 : static_cast<int>(size - 1);
 	std::uniform_int_distribution<int> range(0, max);
 	return range(m_generator);
 }
