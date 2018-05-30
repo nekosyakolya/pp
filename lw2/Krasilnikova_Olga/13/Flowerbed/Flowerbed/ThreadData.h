@@ -5,8 +5,8 @@
 struct ThreadData
 {
 	ThreadData(std::vector<CFlower>* flowerbed, HANDLE mutex)
-		: flowerbed(flowerbed),
-		mutex(mutex)
+		: flowerbed(flowerbed)
+		, mutex(mutex)
 	{
 	}
 	~ThreadData()

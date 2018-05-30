@@ -1,20 +1,17 @@
 ﻿#include "stdafx.h"
 
-#include "Gardener.h"
 #include "Flower.h"
-#include "ThreadData.h"
 #include "FlowerConditionGenerator.h"
+#include "Gardener.h"
+#include "ThreadData.h"
 #include "ThreadsHandler.h"
-
-
 
 namespace
 {
-	const static size_t TIME_SLEEP = 50;
-	const static size_t NUMBER_FLOWERS = 5;
-	const static size_t NUMBER_THREADS = 3;
-
-}
+const static size_t TIME_SLEEP = 50;
+const static size_t NUMBER_FLOWERS = 5;
+const static size_t NUMBER_THREADS = 3;
+} // namespace
 
 DWORD WINAPI Process(LPVOID data)
 {
@@ -38,8 +35,6 @@ DWORD WINAPI Process(LPVOID data)
 	return 0;
 }
 
-
-
 int main()
 {
 	SetConsoleCP(1251);
@@ -50,7 +45,7 @@ int main()
 	{
 		flowerbed.emplace_back(CFlower());
 	}
-	
+
 	HANDLE mutex = CreateMutex(NULL, false, NULL);
 	CThreadsHandler threadsHandler;
 
@@ -67,4 +62,3 @@ int main()
 
 	return 0;
 }
-

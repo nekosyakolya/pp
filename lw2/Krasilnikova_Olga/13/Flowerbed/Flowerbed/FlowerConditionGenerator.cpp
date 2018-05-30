@@ -2,7 +2,7 @@
 #include "FlowerConditionGenerator.h"
 #include "ThreadData.h"
 
-std::mt19937 &CFlowerConditionGenerator::m_generator = CRandomGenerator::get();
+std::mt19937& CFlowerConditionGenerator::m_generator = CRandomGenerator::get();
 
 CFlowerConditionGenerator::CFlowerConditionGenerator()
 {
@@ -14,9 +14,9 @@ DWORD WINAPI CFlowerConditionGenerator::Execute(LPVOID data)
 	while (true)
 	{
 		WaitForSingleObject(threadData->mutex, INFINITE);
-		
+
 		auto i = GetRandomIndex(threadData->flowerbed->size());
-		auto &currentFlower = (threadData->flowerbed)->at(i);
+		auto& currentFlower = (threadData->flowerbed)->at(i);
 
 		if (!currentFlower.IsFlaccidFlower())
 		{
@@ -31,7 +31,6 @@ DWORD WINAPI CFlowerConditionGenerator::Execute(LPVOID data)
 	}
 	return 0;
 }
-
 
 CFlowerConditionGenerator::~CFlowerConditionGenerator()
 {

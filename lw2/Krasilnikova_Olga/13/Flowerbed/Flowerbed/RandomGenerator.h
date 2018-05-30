@@ -1,11 +1,11 @@
 #pragma once
-#include <random>
 #include <chrono>
+#include <random>
 
 class CRandomGenerator
 {
 public:
-	static std::mt19937 & get();
+	static std::mt19937& get();
 
 private:
 	CRandomGenerator();
@@ -13,8 +13,7 @@ private:
 	static CRandomGenerator& instance();
 
 	CRandomGenerator(CRandomGenerator const&) = delete;
-	CRandomGenerator& operator= (CRandomGenerator const&) = delete;
+	CRandomGenerator& operator=(CRandomGenerator const&) = delete;
 
 	std::mt19937 m_generator;
 };
-

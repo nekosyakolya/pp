@@ -3,9 +3,9 @@
 
 size_t CFlower::m_flowerId = 0;
 
-CFlower::CFlower() :
-	m_state(FlowerState::FLOWERING),
-	m_id(++m_flowerId)
+CFlower::CFlower()
+	: m_state(FlowerState::FLOWERING)
+	, m_id(++m_flowerId)
 {
 }
 
@@ -24,12 +24,10 @@ std::string CFlower::GetState() const
 	return ToString(m_state);
 }
 
-void CFlower::SetState(const FlowerState & state)
+void CFlower::SetState(const FlowerState& state)
 {
 	m_state = state;
-
 }
-
 
 CFlower::~CFlower()
 {

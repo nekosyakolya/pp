@@ -1,4 +1,5 @@
 ﻿#pragma once
+
 enum class FlowerState
 {
 	FLOWERING,
@@ -15,10 +16,8 @@ inline std::string ToString(const FlowerState& value)
 		break;
 	default:
 		state = "расцвел";
-
 		break;
 	}
+
 	return state;
 }
-
-
