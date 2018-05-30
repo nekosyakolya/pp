@@ -3,7 +3,6 @@
 class CThreadsHandler
 {
 public:
-	CThreadsHandler();
 	void AddThread(HANDLE const& thread);
 	void Execute();
 	~CThreadsHandler();

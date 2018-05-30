@@ -9,7 +9,6 @@ public:
 	size_t GetId() const;
 	std::string GetState() const;
 	void SetState(const FlowerState& state);
-	~CFlower();
 
 private:
 	FlowerState m_state;

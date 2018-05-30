@@ -20,7 +20,3 @@ void CGardener::WaterFlower(CFlower& flower)
 	}
 	std::printf("садовод #%d ушел от цветочка #%d\n", m_id, flower.GetId());
 }
-
-CGardener::~CGardener()
-{
-}

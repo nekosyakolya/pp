@@ -28,7 +28,3 @@ void CFlower::SetState(const FlowerState& state)
 {
 	m_state = state;
 }
-
-CFlower::~CFlower()
-{
-}

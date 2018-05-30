@@ -4,10 +4,6 @@
 
 std::mt19937& CFlowerConditionGenerator::m_generator = CRandomGenerator::get();
 
-CFlowerConditionGenerator::CFlowerConditionGenerator()
-{
-}
-
 DWORD WINAPI CFlowerConditionGenerator::Execute(LPVOID data)
 {
 	ThreadData* threadData = static_cast<ThreadData*>(data);
@@ -30,10 +26,6 @@ DWORD WINAPI CFlowerConditionGenerator::Execute(LPVOID data)
 		ReleaseMutex(threadData->mutex);
 	}
 	return 0;
-}
-
-CFlowerConditionGenerator::~CFlowerConditionGenerator()
-{
 }
 
 bool CFlowerConditionGenerator::IsAnEvenRandomNumber()

@@ -1,10 +1,6 @@
 #include "stdafx.h"
 #include "ThreadsHandler.h"
 
-CThreadsHandler::CThreadsHandler()
-{
-}
-
 void CThreadsHandler::AddThread(HANDLE const& thread)
 {
 	m_threads.emplace_back(thread);
