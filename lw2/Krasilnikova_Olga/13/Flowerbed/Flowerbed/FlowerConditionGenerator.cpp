@@ -39,8 +39,7 @@ CFlowerConditionGenerator::~CFlowerConditionGenerator()
 bool CFlowerConditionGenerator::IsAnEvenRandomNumber()
 {
 	std::uniform_int_distribution<int> range(0);
-	auto i = range(m_generator);
-	return i % 2 == 0;
+	return range(m_generator) % 2 == 0;
 }
 
 int CFlowerConditionGenerator::GetRandomIndex(size_t size)
